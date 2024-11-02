@@ -1,0 +1,19 @@
+model:
+  # 每个字的图片特征(64)+笔迹特征(9)，不建议修改，除非使用其他预训练模型
+  input_size: 73
+checkpoint:
+  # 多模态模型的预训练模型
+  fusion_path: ../checkpoints/txt_pic_pic_writing_valid_acc_0.786.pkl
+  # 手写数字识别预训练出来的CNN特征提取器
+  CNN_path: ../checkpoints/models/pretained_CNN_acc_0.978.pkl
+  # 预训练的Bert模型(可以去huggingface或者镜像网站下载)
+  tokenizer_path: ../bert-base-chinese
+test_pic:
+  # 笔迹图片切字后的采样数目（若手写的字比较少的话可能需要设置小一点）
+  num_cut: 50
+  # 测试图片路径
+  path: ../data/test_pic.jpg
+  # 切字的时候字的边界，默认为[上，下，左，右]，默认为[13，55，10，55]，可根据字大小调整，单位是px
+  text_border: [13,55,10,55]
+  # 测试图片的文字信息，若不知道可以设置为"ocr"，程序会自动识别（目前效果不太好）
+  content: "我最近过的还不错"
